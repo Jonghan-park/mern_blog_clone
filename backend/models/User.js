@@ -18,5 +18,5 @@ const userSchema = new Schema({
     min: 6,
   },
 });
-export default mongoose.model("User", userSchema);
+module.exports = mongoose.model("User", userSchema);
 // users
