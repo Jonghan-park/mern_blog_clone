@@ -1,15 +1,24 @@
 const express = require("express");
-const dbConnect = require("./db/db");
-const router = require("./routes/user-routes");
+const app = express();
+
+// Set port, and configure dotenv
 const port = process.env.PORT || 5000;
 require("dotenv").config();
 
+// Router
+const blogRouter = require("./routes/blog-routes");
+const userRouter = require("./routes/user-routes");
+
+// DB Connection
+const dbConnect = require("./db/db");
 dbConnect();
 
-const app = express();
+// Declare using json type on the app
 app.use(express.json());
 
-app.use("/api/user", router);
+// Declare router
+app.use("/api/user", userRouter);
+app.use("/api/blog", blogRouter);
 
 app.listen(port, () => {
   console.log(`Server is running on ${port}`);

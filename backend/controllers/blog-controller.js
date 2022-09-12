@@ -11,3 +11,20 @@ exports.getAllBlogs = async (req, res, next) => {
   }
   return res.status(200).json({ blogs });
 };
+
+exports.addBlog = async (req, res, next) => {
+  const { title, desc, image, user } = req.body;
+  const blog = new Blog({
+    title,
+    desc,
+    image,
+    user,
+  });
+
+  try {
+    await blog.save();
+  } catch (error) {
+    return console.log(error);
+  }
+  return res.status(200).json({ blog });
+};
