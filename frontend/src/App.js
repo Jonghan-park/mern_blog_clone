@@ -1,7 +1,14 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
+// Header
 import Header from "./components/Header";
+// components
+import Auth from "./components/Auth";
+import Blogs from "./components/Blogs";
+import UserBlogs from "./components/UserBlogs";
+import BlogDetail from "./components/BlogDetail";
+import AddBlog from "./components/AddBlog";
 
 function App() {
   return (
@@ -11,7 +18,11 @@ function App() {
       </header>
       <main>
         <Routes>
-          <Route path="/"></Route>
+          <Route path="/auth" element={<Auth />} />
+          <Route path="/blogs" element={<Blogs />} />
+          <Route path="/myBlogs" element={<UserBlogs />} />
+          <Route path="/myBlogs/:id" element={<BlogDetail />} />
+          <Route path="/blogs/add" element={<AddBlog />} />
         </Routes>
       </main>
     </React.Fragment>
