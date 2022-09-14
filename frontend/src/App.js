@@ -1,5 +1,6 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
+import { useSelector } from "react-redux";
 import "./App.css";
 // Header
 import Header from "./components/Header";
@@ -11,6 +12,8 @@ import BlogDetail from "./components/BlogDetail";
 import AddBlog from "./components/AddBlog";
 
 function App() {
+  const isLoggedIn = useSelector((state) => state.isLoggedIn);
+  console.log(isLoggedIn);
   return (
     <React.Fragment>
       <header>
