@@ -3,7 +3,7 @@ import axios from "axios";
 import Blog from "./Blog";
 
 const Blogs = () => {
-  const [blogs, setBlogs] = useState();
+  const [blogs, setBlogs] = useState([]);
   const sendRequest = async () => {
     try {
       const res = await axios.get("http://localhost:5000/api/blog");
@@ -18,7 +18,16 @@ const Blogs = () => {
   }, []);
   return (
     <div>
-      <Blog />
+      {blogs &&
+        blogs.map((blog, index) => (
+          <Blog
+            key={index}
+            title={blog.title}
+            desc={blog.desc}
+            imageURL={blog.image}
+            userName={blog.user.name}
+          />
+        ))}
     </div>
   );
 };
