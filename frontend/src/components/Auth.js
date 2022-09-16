@@ -9,9 +9,10 @@ const Auth = () => {
     email: "",
     password: "",
   });
-  const sendRequest = async () => {
+  const sendRequest = async (type = "login") => {
     try {
-      const res = await axios.post("http://localhost:5000/api/user/login", {
+      const res = await axios.post(`http://localhost:5000/api/user/${type}`, {
+        name: inputs.name,
         email: inputs.email,
         password: inputs.password,
       });
@@ -30,8 +31,11 @@ const Auth = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    console.log(inputs);
-    sendRequest();
+    if (isSignup) {
+      sendRequest("register").then((data) => console.log(data));
+    } else {
+      sendRequest().then((data) => console.log(data));
+    }
   };
   return (
     <div>
