@@ -1,5 +1,6 @@
 import { Box, Button, TextField, Typography } from "@mui/material";
 import React, { useState } from "react";
+import axios from "axios";
 
 const Auth = () => {
   const [isSignup, setIsSignup] = useState(false);
@@ -8,6 +9,18 @@ const Auth = () => {
     email: "",
     password: "",
   });
+  const sendRequest = async () => {
+    const res = await axios
+      .post("/api/user/login", {
+        email: inputs.email,
+        password: inputs.password,
+      })
+      .catch((err) => console.log(err));
+
+    const data = await res.data;
+    return data;
+  };
+
   const handleChange = (e) => {
     setInputs((prevState) => ({
       ...prevState,
@@ -18,6 +31,7 @@ const Auth = () => {
     e.preventDefault();
 
     console.log(inputs);
+    sendRequest();
   };
   return (
     <div>

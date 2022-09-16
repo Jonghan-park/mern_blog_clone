@@ -1,5 +1,6 @@
 const express = require("express");
 const app = express();
+const cors = require("cors");
 
 // Set port, and configure dotenv
 const port = process.env.PORT || 5001;
@@ -15,6 +16,8 @@ dbConnect();
 
 // Declare using json type on the app
 app.use(express.json());
+
+app.use(cors());
 
 // Declare router
 app.use("/api/user", userRouter);
