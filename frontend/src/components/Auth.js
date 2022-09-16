@@ -1,8 +1,13 @@
 import { Box, Button, TextField, Typography } from "@mui/material";
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { useDispatch } from "react-redux";
+import { authActions } from "../store";
 
 const Auth = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [isSignup, setIsSignup] = useState(false);
   const [inputs, setInputs] = useState({
     name: "",
@@ -32,9 +37,15 @@ const Auth = () => {
     e.preventDefault();
 
     if (isSignup) {
-      sendRequest("register").then((data) => console.log(data));
+      sendRequest("register")
+        .then(() => dispatch(authActions.login()))
+        .then(() => navigate("/blogs"))
+        .then((data) => console.log(data));
     } else {
-      sendRequest().then((data) => console.log(data));
+      sendRequest()
+        .then(() => dispatch(authActions.login()))
+        .then(() => navigate("/blogs"))
+        .then((data) => console.log(data));
     }
   };
   return (
