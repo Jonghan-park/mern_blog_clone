@@ -8,9 +8,20 @@ const Auth = () => {
     email: "",
     password: "",
   });
+  const handleChange = (e) => {
+    setInputs((prevState) => ({
+      ...prevState,
+      [e.target.name]: e.target.value,
+    }));
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    console.log(inputs);
+  };
   return (
     <div>
-      <form>
+      <form onSubmit={handleSubmit}>
         <Box
           maxWidth={400}
           display="flex"
@@ -28,21 +39,32 @@ const Auth = () => {
           </Typography>
 
           {isSignup && (
-            <TextField value={inputs.name} placeholder="Name" margin="normal" />
+            <TextField
+              name="name"
+              onChange={handleChange}
+              value={inputs.name}
+              placeholder="Name"
+              margin="normal"
+            />
           )}
           <TextField
+            name="email"
+            onChange={handleChange}
             value={inputs.email}
             type={"email"}
             placeholder="Email"
             margin="normal"
           />
           <TextField
+            name="password"
+            onChange={handleChange}
             value={inputs.password}
             type={"password"}
             placeholder="Password"
             margin="normal"
           />
           <Button
+            type="submit"
             variant="contained"
             sx={{ borderRadius: 3, marginTop: 3 }}
             color="warning"
