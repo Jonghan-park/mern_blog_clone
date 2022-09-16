@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 
 // Set port, and configure dotenv
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 5001;
 require("dotenv").config();
 
 // Router
