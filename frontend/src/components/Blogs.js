@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import Blog from "./Blog";
 
 const Blogs = () => {
   const [blogs, setBlogs] = useState();
@@ -15,7 +16,11 @@ const Blogs = () => {
   useEffect(() => {
     sendRequest().then((data) => setBlogs(data.blogs));
   }, []);
-  return <div>Blogs</div>;
+  return (
+    <div>
+      <Blog />
+    </div>
+  );
 };
 
 export default Blogs;
