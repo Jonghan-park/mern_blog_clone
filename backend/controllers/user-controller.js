@@ -44,6 +44,7 @@ exports.login = async (req, res, next) => {
 
   try {
     existingUser = await User.findOne({ email });
+    console.log(existingUser);
   } catch (error) {
     console.log(error);
   }

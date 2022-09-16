@@ -10,15 +10,15 @@ const Auth = () => {
     password: "",
   });
   const sendRequest = async () => {
-    const res = await axios
-      .post("/api/user/login", {
+    try {
+      const res = await axios.post("http://localhost:5000/api/user/login", {
         email: inputs.email,
         password: inputs.password,
-      })
-      .catch((err) => console.log(err));
-
-    const data = await res.data;
-    return data;
+      });
+      return res.data;
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const handleChange = (e) => {
