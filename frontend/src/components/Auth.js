@@ -21,6 +21,7 @@ const Auth = () => {
         email: inputs.email,
         password: inputs.password,
       });
+      console.log(res.data);
       return res.data;
     } catch (error) {
       console.log(error);
@@ -38,11 +39,13 @@ const Auth = () => {
 
     if (isSignup) {
       sendRequest("register")
+        .then((data) => localStorage.setItem("userId", data.user._id))
         .then(() => dispatch(authActions.login()))
         .then(() => navigate("/blogs"))
         .then((data) => console.log(data));
     } else {
       sendRequest()
+        .then((data) => localStorage.setItem("userId", data.user._id))
         .then(() => dispatch(authActions.login()))
         .then(() => navigate("/blogs"))
         .then((data) => console.log(data));
