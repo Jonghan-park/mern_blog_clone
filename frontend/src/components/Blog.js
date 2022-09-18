@@ -6,9 +6,14 @@ import {
   CardMedia,
   CardContent,
   Typography,
+  Box,
+  IconButton,
 } from "@mui/material";
+import ModeEditOutlineIcon from "@mui/icons-material/ModeEditOutline";
+import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 
-const Blog = ({ title, desc, imageURL, userName }) => {
+const Blog = ({ title, desc, imageURL, userName, isUser }) => {
+  console.log(title, isUser);
   return (
     <div>
       <Card
@@ -21,6 +26,16 @@ const Blog = ({ title, desc, imageURL, userName }) => {
           ":hover": { boxShadow: "10px 10px 20px #ccc" },
         }}
       >
+        {isUser && (
+          <Box display="flex">
+            <IconButton sx={{ marginLeft: "auto" }}>
+              <ModeEditOutlineIcon />
+            </IconButton>
+            <IconButton>
+              <DeleteForeverIcon />
+            </IconButton>
+          </Box>
+        )}
         <CardHeader
           avatar={
             <Avatar sx={{ bgcolor: "red" }} aria-label="recipe">
@@ -38,7 +53,7 @@ const Blog = ({ title, desc, imageURL, userName }) => {
         />
         <CardContent>
           <Typography variant="body2" color="text.secondary">
-            {desc}
+            <b>{userName}</b>: {desc}
           </Typography>
         </CardContent>
       </Card>
