@@ -18,6 +18,7 @@ const UserBlogs = () => {
   };
   useEffect(() => {
     sendRequest().then((data) => setUser(data.user));
+    console.log(user);
   }, []);
   return (
     <div>
@@ -30,6 +31,8 @@ const UserBlogs = () => {
             desc={blog.desc}
             imageURL={blog.image}
             userName={user.name}
+            isUser={user}
+            id={blog._id}
           />
         ))}
     </div>
