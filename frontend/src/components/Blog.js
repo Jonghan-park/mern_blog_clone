@@ -1,4 +1,5 @@
 import React from "react";
+import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import {
   Card,
@@ -18,7 +19,18 @@ const Blog = ({ title, desc, imageURL, userName, isUser, id }) => {
   const handleEdit = (e) => {
     navigate(`/myBlogs/${id}`);
   };
-  const handleDelete = (e) => {};
+  const deleteRequest = async () => {
+    try {
+      const res = await axios.delete(`http://localhost:5000/api/blog/${id}`);
+      const data = await res.data;
+      return data;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const handleDelete = (e) => {
+    deleteRequest().then((data) => console.log(data));
+  };
   console.log(title, isUser);
   return (
     <div>
