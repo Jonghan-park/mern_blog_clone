@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import {
   Card,
   CardHeader,
@@ -12,7 +13,12 @@ import {
 import ModeEditOutlineIcon from "@mui/icons-material/ModeEditOutline";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 
-const Blog = ({ title, desc, imageURL, userName, isUser }) => {
+const Blog = ({ title, desc, imageURL, userName, isUser, id }) => {
+  const navigate = useNavigate();
+  const handleEdit = (e) => {
+    navigate(`/myBlogs/${id}`);
+  };
+  const handleDelete = (e) => {};
   console.log(title, isUser);
   return (
     <div>
@@ -28,10 +34,10 @@ const Blog = ({ title, desc, imageURL, userName, isUser }) => {
       >
         {isUser && (
           <Box display="flex">
-            <IconButton sx={{ marginLeft: "auto" }}>
+            <IconButton onClick={handleEdit} sx={{ marginLeft: "auto" }}>
               <ModeEditOutlineIcon />
             </IconButton>
-            <IconButton>
+            <IconButton onClick={handleDelete}>
               <DeleteForeverIcon />
             </IconButton>
           </Box>
